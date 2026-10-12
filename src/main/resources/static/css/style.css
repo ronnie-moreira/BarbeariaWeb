@@ -1,0 +1,189 @@
+/* ==========================================================================
+   1. VARIÁVEIS DE DESIGN (ALTERE AS CORES E FONTES AQUI)
+   ========================================================================== */
+:root {
+    /* Cores Principais (Tema Escuro Elegante com Detalhes Dourados) */
+    --cor-fundo: #121212;            /* Fundo geral da página */
+    --cor-card: #1e1e1e;             /* Fundo dos blocos/cards */
+    --cor-principal: #d4af37;        /* Dourado para destaques e botões */
+    --cor-principal-hover: #b89628;  /* Dourado mais escuro ao passar o mouse */
+
+    /* Cores de Texto */
+    --cor-texto-principal: #f5f5f5;  /* Texto claro principal */
+    --cor-texto-secundario: #a0a0a0; /* Texto secundário/suave */
+    --cor-texto-escuro: #121212;     /* Texto escuro (usado dentro dos botões) */
+
+    /* Tipografia */
+    --fonte-principal: 'Segoe UI', system-ui, -apple-system, sans-serif;
+
+    /* Bordas e Sombras */
+    --borda-raio: 10px;              /* Arredondamento dos cantos */
+    --sombra-card: 0 8px 24px rgba(0, 0, 0, 0.4);
+    --sombra-botao: 0 4px 14px rgba(212, 175, 55, 0.3);
+
+    /* Transições */
+    --transicao-suave: all 0.3s ease;
+}
+
+/* ==========================================================================
+   2. RESET BÁSICO E ESTILOS GERAIS DA PÁGINA
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--cor-fundo);
+    color: var(--cor-texto-principal);
+    font-family: var(--fonte-principal);
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+/* ==========================================================================
+   3. CABEÇALHO (HEADER)
+   ========================================================================== */
+.cabecalho {
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 30px;
+}
+
+/* Nome do Barbeiro */
+.barbeiro {
+    color: var(--cor-principal);
+    font-size: 0.95rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 5px;
+}
+
+/* Título Principal da Barbearia */
+.cabecalho h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    letter-spacing: 3px;
+    color: var(--cor-texto-principal);
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+    margin-bottom: 8px;
+}
+
+/* Subtítulo / Descrição */
+.cabecalho p:last-child {
+    color: var(--cor-texto-secundario);
+    font-size: 1rem;
+}
+
+/* ==========================================================================
+   4. CONTEÚDO PRINCIPAL E MENU
+   ========================================================================== */
+.conteudo {
+    width: 100%;
+    max-width: 480px;                /* Largura máxima do menu de botões */
+    background-color: var(--cor-card);
+    padding: 30px;
+    border-radius: var(--borda-raio);
+    box-shadow: var(--sombra-card);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Título da seção (Menu Principal) */
+.titulo-menu {
+    text-align: center;
+    font-size: 1.3rem;
+    color: var(--cor-texto-principal);
+    margin-bottom: 25px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+/* Linha decorativa dourada abaixo do título */
+.titulo-menu::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 3px;
+    background-color: var(--cor-principal);
+    border-radius: 2px;
+}
+
+/* Container que organiza os botões na vertical */
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;                       /* Espaçamento entre os botões */
+}
+
+/* ==========================================================================
+   5. ESTILIZAÇÃO DOS BOTÕES
+   ========================================================================== */
+.botao-menu {
+    display: block;
+    width: 100%;
+    padding: 14px 20px;
+    text-align: center;
+    text-decoration: none;           /* Remove o sublinhado do link */
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--cor-texto-escuro);
+    background-color: var(--cor-principal);
+    border-radius: var(--borda-raio);
+    box-shadow: var(--sombra-botao);
+    transition: var(--transicao-suave);
+    cursor: pointer;
+}
+
+/* Efeito ao passar o mouse por cima do botão (Hover) */
+.botao-menu:hover {
+    background-color: var(--cor-principal-hover);
+    transform: translateY(-3px);     /* Eleva levemente o botão */
+    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+}
+
+/* Efeito ao clicar no botão */
+.botao-menu:active {
+    transform: translateY(-1px);
+}
+
+/* ==========================================================================
+   6. RODAPÉ (FOOTER)
+   ========================================================================== */
+.rodape {
+    text-align: center;
+    margin-top: 40px;
+    padding: 15px;
+    color: var(--cor-texto-secundario);
+    font-size: 0.85rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    width: 100%;
+    max-width: 600px;
+}
+
+/* ==========================================================================
+   7. ADAPTAÇÃO PARA DISPOSITIVOS MÓVEIS (RESPONSIVIDADE)
+   ========================================================================== */
+@media (max-width: 480px) {
+    .cabecalho h1 {
+        font-size: 1.8rem;
+    }
+
+    .conteudo {
+        padding: 20px;
+    }
+
+    .botao-menu {
+        padding: 12px 16px;
+        font-size: 0.95rem;
+    }
+}
