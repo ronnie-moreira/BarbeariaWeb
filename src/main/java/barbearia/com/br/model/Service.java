@@ -1,24 +1,30 @@
-package barbearia.com.br.service;
+package barbearia.com.br.model;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "servicos")
 public class Service {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idservico;
+
     private String tipo;
     private double preco;
     private float duracao;
 
-    public Service(){
-
+    public Service() {
     }
 
-    public Service (Long idservico, String tipo, double preco, float duracao){
+    public Service(Long idservico, String tipo, double preco, float duracao) {
         this.idservico = idservico;
         this.tipo = tipo;
         this.preco = preco;
         this.duracao = duracao;
     }
 
-    public Long getIdservico(){
+    public Long getIdservico() {
         return idservico;
     }
 
@@ -34,7 +40,7 @@ public class Service {
         this.tipo = tipo;
     }
 
-    public double getPreco(){
+    public double getPreco() {
         return preco;
     }
 
@@ -45,8 +51,8 @@ public class Service {
     public float getDuracao() {
         return duracao;
     }
+
     public void setDuracao(float duracao) {
         this.duracao = duracao;
     }
-
 }

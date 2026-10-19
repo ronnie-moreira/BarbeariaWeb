@@ -187,3 +187,503 @@ body {
         font-size: 0.95rem;
     }
 }
+/* ==========================================================================
+   8. ESTILIZAÇÃO DE FORMULÁRIOS (INPUTS, SELECTS E LABELS)
+   ========================================================================== */
+.formulario-agendamento {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.form-grupo {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--cor-texto-principal);
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 1rem;
+    font-family: var(--fonte-principal);
+    color: var(--cor-texto-principal);
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--borda-raio);
+    transition: var(--transicao-suave);
+    outline: none;
+}
+
+/* Efeito ao clicar/focar no input ou select */
+.form-control:focus {
+    border-color: var(--cor-principal);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
+    background-color: rgba(255, 255, 255, 0.06);
+}
+
+/* Ajuste específico para o select (dropdown de status) */
+select.form-control {
+    cursor: pointer;
+    appearance: none; /* Padroniza o estilo do dropdown */
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23d4af37' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 16px;
+    padding-right: 45px;
+}
+
+/* Estilo para as opções dentro do select no tema escuro */
+select.form-control option {
+    background-color: var(--cor-card);
+    color: var(--cor-texto-principal);
+}
+
+/* ==========================================================================
+   9. ESTILIZAÇÃO DA TABELA DE AGENDAMENTOS (Painel)
+   ========================================================================== */
+.tabela-container {
+    width: 100%;
+    overflow-x: auto;
+    margin-top: 15px;
+    border-radius: var(--borda-raio);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.tabela-dados {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: var(--cor-card);
+    text-align: left;
+    font-size: 0.95rem;
+}
+
+.tabela-dados th,
+.tabela-dados td {
+    padding: 14px 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.tabela-dados th {
+    background-color: rgba(255, 255, 255, 0.03);
+    color: var(--cor-principal);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+}
+
+.tabela-dados tr:hover {
+    background-color: rgba(255, 255, 255, 0.02); /* Efeito suave ao passar o mouse na linha */
+}
+
+/* Link/Botão de Excluir */
+.acao-excluir {
+    color: #ff5252;
+    text-decoration: none;
+    font-weight: 600;
+    transition: var(--transicao-suave);
+}
+
+.acao-excluir:hover {
+    color: #ff7676;
+    text-decoration: underline;
+}
+/* ==========================================================================
+   10. ESTILIZAÇÃO ESPECÍFICA DO CADASTRO DE CLIENTES
+   ========================================================================== */
+
+/* Grupo do Formulário de Clientes */
+.formulario-cliente {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+/* Garante que todos os inputs de texto e e-mail recebam a cor dourada ao focar */
+.formulario-cliente input[type="text"]:focus,
+.formulario-cliente input[type="email"]:focus {
+    border-color: var(--cor-principal);
+    box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.15);
+    background-color: rgba(255, 255, 255, 0.06);
+}
+
+/* Link de retorno com destaque dourado */
+.link-voltar {
+    color: var(--cor-texto-secundario);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: var(--transicao-suave);
+}
+
+.link-voltar:hover {
+    color: var(--cor-principal);
+    text-shadow: 0 0 8px rgba(212, 175, 55, 0.3);
+}
+
+/* ===== LISTA DE CLIENTES ===== */
+.conteudo-largo {
+    max-width: 900px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.lista-topo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.lista-topo .titulo-menu {
+    margin: 0;
+}
+
+.botao-novo {
+    display: inline-block;
+    text-decoration: none;
+    padding: 10px 18px;
+    font-size: 0.9rem;
+    width: auto;
+}
+
+.tabela-wrapper {
+    overflow-x: auto;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.tabela-clientes {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+.tabela-clientes thead {
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.tabela-clientes th {
+    text-align: left;
+    padding: 14px 16px;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--cor-principal, #c9a227);
+    border-bottom: 2px solid var(--cor-principal, #c9a227);
+}
+
+.tabela-clientes td {
+    padding: 14px 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    vertical-align: middle;
+}
+
+.tabela-clientes tbody tr {
+    transition: background 0.2s ease;
+}
+
+.tabela-clientes tbody tr:hover {
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.tabela-clientes tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.tabela-clientes td:first-child {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 600;
+}
+
+.avatar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--cor-principal, #c9a227);
+    color: #111;
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+.col-acoes {
+    text-align: right;
+    width: 1%;
+    white-space: nowrap;
+}
+
+.btn-excluir {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 6px;
+    border: 1px solid #e5484d;
+    color: #e5484d;
+    text-decoration: none;
+    font-size: 0.85rem;
+    transition: all 0.2s ease;
+}
+
+.btn-excluir:hover {
+    background: #e5484d;
+    color: #fff;
+}
+
+.lista-vazia {
+    text-align: center;
+    padding: 40px 20px;
+    border: 2px dashed rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    color: var(--cor-texto-secundario, #aaa);
+}
+
+.total-clientes {
+    text-align: right;
+    margin-top: 12px;
+    font-size: 0.85rem;
+    color: var(--cor-texto-secundario, #aaa);
+}
+
+/* ===== CELULAR: cada linha vira um cartão ===== */
+@media (max-width: 640px) {
+    .tabela-clientes thead {
+        display: none;
+    }
+
+    .tabela-clientes,
+    .tabela-clientes tbody,
+    .tabela-clientes tr,
+    .tabela-clientes td {
+        display: block;
+        width: 100%;
+    }
+
+    .tabela-clientes tr {
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .tabela-clientes td {
+        border: none;
+        padding: 6px 16px;
+    }
+
+    .tabela-clientes td[data-label]:not(:first-child)::before {
+        content: attr(data-label) ": ";
+        color: var(--cor-texto-secundario, #aaa);
+        font-size: 0.8rem;
+    }
+
+    .col-acoes {
+        text-align: left;
+        width: 100%;
+    }
+}
+.alerta-erro {
+    background: rgba(229, 72, 77, 0.15);
+    border: 1px solid #e5484d;
+    color: #e5484d;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+}
+
+.alerta-ok {
+    background: rgba(48, 164, 108, 0.15);
+    border: 1px solid #30a46c;
+    color: #30a46c;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 16px;
+}
+
+.link-voltar {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.link-voltar a {
+    color: var(--cor-texto-secundario, #aaa);
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.link-voltar a:hover {
+    color: var(--cor-principal, #c9a227);
+}
+
+/* ===== LAYOUT LARGO (listas e painéis) ===== */
+.conteudo-largo {
+    max-width: 900px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* ===== TABELA ===== */
+.tabela-wrapper {
+    overflow-x: auto;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.tabela-clientes {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+.tabela-clientes thead {
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.tabela-clientes th {
+    text-align: left;
+    padding: 14px 16px;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--cor-principal, #c9a227);
+    border-bottom: 2px solid var(--cor-principal, #c9a227);
+}
+
+.tabela-clientes td {
+    padding: 14px 16px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    vertical-align: middle;
+}
+
+.tabela-clientes tbody tr {
+    transition: background 0.2s ease;
+}
+
+.tabela-clientes tbody tr:hover {
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.tabela-clientes tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.col-acoes {
+    text-align: right;
+    width: 1%;
+    white-space: nowrap;
+}
+
+/* ===== BOTÃO EXCLUIR ===== */
+.btn-excluir {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 6px;
+    border: 1px solid #e5484d;
+    background: none;
+    color: #e5484d;
+    text-decoration: none;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-excluir:hover {
+    background: #e5484d;
+    color: #fff;
+}
+
+/* ===== LISTA VAZIA ===== */
+.lista-vazia {
+    text-align: center;
+    padding: 40px 20px;
+    border: 2px dashed rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    color: var(--cor-texto-secundario, #aaa);
+}
+
+/* ===== LINK VOLTAR ===== */
+.link-voltar {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.link-voltar a {
+    color: var(--cor-texto-secundario, #aaa);
+    text-decoration: none;
+    font-size: 0.9rem;
+}
+
+.link-voltar a:hover {
+    color: var(--cor-principal, #c9a227);
+}
+
+/* ===== CELULAR: cada linha vira um cartão ===== */
+@media (max-width: 640px) {
+    .tabela-clientes thead {
+        display: none;
+    }
+
+    .tabela-clientes,
+    .tabela-clientes tbody,
+    .tabela-clientes tr,
+    .tabela-clientes td {
+        display: block;
+        width: 100%;
+    }
+
+    .tabela-clientes tr {
+        padding: 12px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .tabela-clientes td {
+        border: none;
+        padding: 6px 16px;
+    }
+
+    .col-acoes {
+        text-align: left;
+        width: 100%;
+    }
+}
+.alerta-erro {
+    background-color: rgba(255, 77, 77, 0.15);
+    border: 1px solid #ff4d4d;
+    color: #ff4d4d;
+    padding: 12px 16px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: 600;
+}
+/* Estilo para o campo select de horários e datas */
+select.botao-menu, input[type="date"].botao-menu {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--cor-texto-principal, #ffffff);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 10px;
+    border-radius: 6px;
+    width: 100%;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+/* Garante que o texto dentro do menu suspenso apareça legível (fundo escuro e texto branco) */
+select.botao-menu option {
+    background-color: #1a1a1a; /* Fundo escuro para a caixinha que abre */
+    color: #ffffff;            /* Texto branco legível */
+    padding: 8px;
+}

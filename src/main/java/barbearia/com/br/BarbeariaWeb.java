@@ -9,5 +9,4 @@ public class BarbeariaWeb {
     public static void main(String[] args) {
         SpringApplication.run(BarbeariaWeb.class, args);
     }
-
 }

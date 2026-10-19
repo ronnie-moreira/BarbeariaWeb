@@ -1,13 +1,11 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
-    <!-- Ajuste no viewport: era 'initial-scale0 = 1.0' -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Barbearia Lil Boss</title>
-    <!-- Carrega o CSS da pasta static/css/style.css do Spring Boot -->
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 
 <body>
@@ -21,11 +19,27 @@
     <h2 class="titulo-menu">Menu principal</h2>
 
     <section class="menu">
-        <a class="botao-menu" href="/agendar/novo">Agendar horário</a>
-        <a class="botao-menu" href="/clientes/novo">Cadastrar cliente</a>
-        <a class="botao-menu" href="/agendamentos">Listar horários</a>
-        <a class="botao-menu" href="/clientes">Listar clientes</a>
-        <a class="botao-menu" href="/agendar/cancelar">Cancelar agendamento</a>
+
+        <!-- Visível para qualquer usuário logado -->
+        <a class="botao-menu" th:href="@{/agendamentos/novo}">Agendar horário</a>
+        <a class="botao-menu" th:href="@{/agendamentos}">Meus horários</a>
+
+        <!-- Só o admin vê estes botões -->
+        <th:block sec:authorize="hasRole('ADMIN')">
+            <a class="botao-menu" th:href="@{/clientes/novo}">Cadastrar cliente</a>
+            <a class="botao-menu" th:href="@{/clientes}">Listar clientes</a>
+            <a class="botao-menu" th:href="@{/barbeiros}">Barbeiros</a>
+            <a class="botao-menu" th:href="@{/servicos}">Serviços</a>
+        </th:block>
+
+        <!-- Sair (no Spring Security 6 precisa ser POST) -->
+        <form th:action="@{/logout}" method="post" sec:authorize="isAuthenticated()">
+            <button type="submit" class="botao-menu">Sair</button>
+        </form>
+
+        <!-- Quem não está logado -->
+        <a class="botao-menu" th:href="@{/login}" sec:authorize="!isAuthenticated()">Entrar</a>
+        <a class="botao-menu" th:href="@{/cadastro}" sec:authorize="!isAuthenticated()">Criar conta</a>
     </section>
 </main>
 
