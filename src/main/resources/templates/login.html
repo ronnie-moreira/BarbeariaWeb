@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Entrar - Barbearia</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<header class="cabecalho">
+    <h1>Barbearia</h1>
+    <p>Entre para agendar seu horário</p>
+</header>
+
+<main class="conteudo">
+    <h2 class="titulo-menu">Entrar</h2>
+
+    <div class="alerta-erro" th:if="${param.error}">E-mail ou senha inválidos.</div>
+    <div class="alerta-ok" th:if="${param.logout}">Você saiu da conta.</div>
+    <div class="alerta-ok" th:if="${param.cadastrado}">Conta criada! Faça login.</div>
+
+    <form th:action="@{/login}" method="post" class="formulario-agendamento">
+        <div class="form-grupo">
+            <label class="form-label" for="username">E-mail:</label>
+            <input type="email" id="username" name="username" class="form-control" required />
+        </div>
+
+        <div class="form-grupo">
+            <label class="form-label" for="password">Senha:</label>
+            <input type="password" id="password" name="password" class="form-control" required />
+        </div>
+
+        <br>
+        <button type="submit" class="botao-menu">Entrar</button>
+    </form>
+
+    <div class="link-voltar">
+        <a th:href="@{/cadastro}">Ainda não tem conta? Cadastre-se</a>
+    </div>
+</main>
+
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Cadastrar Cliente - Barbearia</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<!-- CABEÇALHO PADRÃO -->
+<header class="cabecalho">
+    <div class="barbeiro">Painel Administrativo</div>
+    <h1>Barbearia</h1>
+    <p>Cadastre um novo cliente para realizar agendamentos</p>
+</header>
+
+<!-- CONTEÚDO PRINCIPAL (CARD DO FORMULÁRIO) -->
+<main class="conteudo">
+    <h2 class="titulo-menu">Novo Cliente</h2>
+
+    <form th:action="@{/clientes/salvar}" th:object="${cliente}" method="post" class="formulario-agendamento">
+
+        <div class="form-grupo">
+            <label class="form-label" for="nome">Nome:</label>
+            <input type="text" id="nome" th:field="*{nome}" class="form-control" placeholder="Digite o nome completo" required />
+        </div>
+
+        <div class="form-grupo">
+            <label class="form-label" for="telefone">Telefone:</label>
+            <input type="text" id="telefone" th:field="*{telefone}" class="form-control" placeholder="(00) 00000-0000" />
+        </div>
+
+        <div class="form-grupo">
+            <label class="form-label" for="email">E-mail:</label>
+            <input type="email" id="email" th:field="*{email}" class="form-control" placeholder="exemplo@email.com" />
+        </div>
+
+        <br>
+
+        <button type="submit" class="botao-menu">Salvar Cliente</button>
+    </form>
+
+    <div class="link-voltar">
+        <a th:href="@{/clientes}">← Voltar para a lista de clientes</a>
+    </div>
+</main>
+
+<!-- RODAPÉ -->
+<footer class="rodape">
+    <p>&copy; 2026 Barbearia. Todos os direitos reservados.</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agendamentos - Barbearia</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<header class="cabecalho">
+    <div class="barbeiro">Barbearia Lil Boss</div>
+    <h1 sec:authorize="hasRole('ADMIN')">Painel de Atendimentos</h1>
+    <h1 sec:authorize="!hasRole('ADMIN')">Meus horários</h1>
+    <p sec:authorize="hasRole('ADMIN')">Gerencie os agendamentos da barbearia</p>
+    <p sec:authorize="!hasRole('ADMIN')">Seus horários marcados</p>
+</header>
+
+<main class="conteudo" style="width: 90%; max-width: 1000px;">
+
+    <div class="alerta-ok" th:if="${param.agendado}">Horário agendado com sucesso!</div>
+    <div class="alerta-ok" th:if="${param.cancelado}">Agendamento cancelado.</div>
+
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+        <h2 class="titulo-menu" style="margin: 0;">Agendamentos</h2>
+        <a th:href="@{/agendamentos/novo}" class="botao-menu"
+           style="padding: 10px 20px; text-decoration: none; text-align: center;">+ Novo Agendamento</a>
+    </div>
+
+    <div style="overflow-x: auto;">
+        <table style="width: 100%; border-collapse: collapse; background-color: var(--cor-card); border-radius: 8px; overflow: hidden;">
+            <thead>
+            <tr style="background-color: rgba(255, 255, 255, 0.05); color: var(--cor-principal); text-align: left;">
+                <th style="padding: 12px;">Data e Hora</th>
+                <th style="padding: 12px;" sec:authorize="hasRole('ADMIN')">Cliente</th>
+                <th style="padding: 12px;">Barbeiro</th>
+                <th style="padding: 12px;">Serviço</th>
+                <th style="padding: 12px;">Status</th>
+                <th style="padding: 12px; text-align: center;">Ações</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="a : ${agendamentos}"
+                style="border-top: 1px solid rgba(255, 255, 255, 0.1); color: var(--cor-texto-principal);">
+
+                <td style="padding: 12px;"
+                    th:text="${#temporals.format(a.dataHora, 'dd/MM/yyyy HH:mm')}">16/10/2026 14:00</td>
+
+                <td style="padding: 12px;" sec:authorize="hasRole('ADMIN')"
+                    th:text="${a.cliente != null ? a.cliente.nome : 'N/A'}">Cliente</td>
+
+                <td style="padding: 12px;"
+                    th:text="${a.barbeiro != null ? a.barbeiro.nome : 'N/A'}">Barbeiro</td>
+
+                <td style="padding: 12px;"
+                    th:text="${a.servico != null ? a.servico.nome : 'N/A'}">Serviço</td>
+
+                <td style="padding: 12px;" th:text="${a.status.descricao}">Agendado</td>
+
+                <td style="padding: 12px; text-align: center;">
+                    <!-- Concluir: só admin, só se ainda estiver agendado -->
+                    <form sec:authorize="hasRole('ADMIN')" th:if="${a.status.name() == 'AGENDADO'}"
+                          th:action="@{/admin/agendamentos/concluir/{id}(id=${a.id})}" method="post"
+                          style="display: inline;">
+                        <button type="submit"
+                                style="background: none; border: none; color: #30a46c; font-weight: 600; cursor: pointer;">
+                            Concluir
+                        </button>
+                    </form>
+
+                    <!-- Cancelar: só se estiver agendado -->
+                    <form th:if="${a.status.name() == 'AGENDADO'}"
+                          th:action="@{/agendamentos/cancelar/{id}(id=${a.id})}" method="post"
+                          style="display: inline;"
+                          onsubmit="return confirm('Cancelar este agendamento?');">
+                        <button type="submit"
+                                style="background: none; border: none; color: #ff4d4d; font-weight: 600; cursor: pointer;">
+                            Cancelar
+                        </button>
+                    </form>
+                </td>
+            </tr>
+
+            <tr th:if="${#lists.isEmpty(agendamentos)}">
+                <td colspan="6" style="padding: 20px; text-align: center; color: var(--cor-texto-principal);">
+                    Nenhum agendamento até o momento.
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div style="margin-top: 20px; text-align: left;">
+        <a th:href="@{/}" class="botao-menu"
+           style="display: inline-block; background-color: transparent; color: var(--cor-principal); border: 1px solid var(--cor-principal); text-decoration: none; padding: 10px 20px;">Voltar ao Início</a>
+    </div>
+
+</main>
+
+<footer class="rodape">
+    <p>&copy; 2026 Barbearia Lil Boss. Todos os direitos reservados.</p>
+</footer>
+
+</body>
+</html>

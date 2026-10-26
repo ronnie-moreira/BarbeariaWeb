@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de Agendamento</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<header class="cabecalho">
+    <div class="barbeiro">Barbearia Lil Boss</div>
+    <h1>Agendamento</h1>
+    <p>Preencha os dados do atendimento</p>
+</header>
+
+<main class="conteudo">
+    <h2 class="titulo-menu">Novo Atendimento</h2>
+
+    <div class="alerta-erro" th:if="${erro}" th:text="${erro}"></div>
+
+    <form th:action="@{/agendamentos/salvar}" th:object="${agendamento}" method="post" class="menu">
+
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+
+            <!-- Campo de Data -->
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+                <label for="data" style="color: var(--cor-texto-principal); font-weight: 600;">Data do Atendimento</label>
+                <input type="date" id="data" name="data" required class="botao-menu"
+                       style="background-color: rgba(255, 255, 255, 0.05); color: var(--cor-texto-principal); text-align: left; padding: 10px;">
+            </div>
+
+            <!-- Campo de Horário Fixo (09:00 às 21:00 a cada 30 min) -->
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+                <label for="hora" style="color: var(--cor-texto-principal); font-weight: 600;">Horário do Atendimento</label>
+                <select id="hora" name="hora" required class="botao-menu"
+                        style="background-color: rgba(255, 255, 255, 0.05); color: var(--cor-texto-principal); text-align: left; padding: 10px;">
+                    <option value="" disabled selected>Selecione um horário fixo</option>
+                    <option th:each="h : ${horariosPermitidos}"
+                            th:value="${h}"
+                            th:text="${#temporals.format(h, 'HH:mm')}">
+                    </option>
+                </select>
+            </div>
+
+            <!-- CAMPO DE SELEÇÃO DE BARBEIRO ADICIONADO AQUI -->
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+                <label for="barbeiro" style="color: var(--cor-texto-principal); font-weight: 600;">Barbeiro</label>
+                <select id="barbeiro" th:field="*{barbeiro.id}" required class="botao-menu"
+                        style="background-color: rgba(255, 255, 255, 0.05); color: var(--cor-texto-principal); text-align: left; padding: 10px;">
+                    <option value="" disabled selected>Selecione um barbeiro</option>
+                    <option th:each="b : ${barbeiros}"
+                            th:value="${b.id}"
+                            th:text="${b.nome}">
+                    </option>
+                </select>
+            </div>
+
+        </div>
+
+        <!-- Só o admin escolhe o cliente. O cliente comum é definido automaticamente no controller -->
+        <div sec:authorize="hasRole('ADMIN')" style="display: flex; flex-direction: column; gap: 8px; margin-top: 8px;">
+            <label for="cliente" style="color: var(--cor-texto-principal); font-weight: 600;">ID do Cliente</label>
+            <input type="number" id="cliente" th:field="*{cliente.id}" class="botao-menu"
+                   style="background-color: rgba(255, 255, 255, 0.05); color: var(--cor-texto-principal); text-align: left; padding: 10px;"
+                   placeholder="Digite o ID do cliente">
+        </div>
+
+        <button type="submit" class="botao-menu" style="margin-top: 10px;">Salvar</button>
+
+        <a th:href="@{/}" class="botao-menu"
+           style="background-color: transparent; color: var(--cor-principal); border: 1px solid var(--cor-principal);">Voltar ao Início</a>
+
+    </form>
+</main>
+
+<footer class="rodape">
+    <p>&copy; 2026 Barbearia Lil Boss. Todos os direitos reservados.</p>
+</footer>
+
+</body>
+</html>

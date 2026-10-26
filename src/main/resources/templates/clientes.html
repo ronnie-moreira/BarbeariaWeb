@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Clientes - Barbearia</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+
+<header class="cabecalho">
+    <div class="barbeiro">Painel Administrativo</div>
+    <h1>Barbearia</h1>
+    <p>Clientes cadastrados</p>
+</header>
+
+<main class="conteudo conteudo-largo">
+    <div class="lista-topo">
+        <h2 class="titulo-menu">Clientes</h2>
+        <a th:href="@{/clientes/novo}" class="botao-menu botao-novo">+ Novo Cliente</a>
+    </div>
+
+    <!-- Estado vazio -->
+    <div class="lista-vazia" th:if="${#lists.isEmpty(clientes)}">
+        <p>Nenhum cliente cadastrado ainda.</p>
+    </div>
+
+    <!-- Tabela -->
+    <div class="tabela-wrapper" th:unless="${#lists.isEmpty(clientes)}">
+        <table class="tabela-clientes">
+            <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Telefone</th>
+                <th>E-mail</th>
+                <th class="col-acoes">Ações</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="c : ${clientes}">
+                <td data-label="Nome">
+                    <span class="avatar" th:text="${#strings.substring(c.nome, 0, 1).toUpperCase()}">A</span>
+                    <span th:text="${c.nome}">Nome</span>
+                </td>
+                <td data-label="Telefone" th:text="${c.telefone}">(00) 00000-0000</td>
+                <td data-label="E-mail" th:text="${c.email}">email@exemplo.com</td>
+                <td data-label="Ações" class="col-acoes">
+                    <a th:href="@{/clientes/deletar/{id}(id=${c.id})}"
+                       class="btn-excluir"
+                       onclick="return confirm('Excluir este cliente?');">Excluir</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <p class="total-clientes" th:unless="${#lists.isEmpty(clientes)}"
+       th:text="${#lists.size(clientes)} + ' cliente(s) cadastrado(s)'">2 cliente(s)</p>
+</main>
+
+<footer class="rodape">
+    <p>&copy; 2026 Barbearia. Todos os direitos reservados.</p>
+</footer>
+
+</body>
+</html>
