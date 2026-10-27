@@ -41,4 +41,4 @@ Certifique-se de ter instalado em sua máquina:
 * 
 1. **Clone este repositório:**
    ```bash
-   git clone [https://github.com/seu-usuario/nome-do-projeto-barbearia.git](https://github.com/seu-usuario/nome-do-projeto-barbearia.git)
+   git clone [https://github.com/ronnie-moreira/BarbeariaWeb-barbearia.git](https://github.com/ronnie-moreira/BarbeariaWeb-barbearia.git)
